@@ -1,0 +1,237 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+     font-family: 'Raleway', sans-serif;
+  
+}
+
+h1 {
+    color: #2d4b5d;
+}
+
+.layout-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #cde5e4;
+    align-items: center;
+     text-align: center;
+  }
+  
+  .search-city {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .city-input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 25%;
+  }
+  .loading {
+    color: #2d4b5d;
+    font-weight: bold;
+  }
+
+ .display-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+width: 100%; 
+}
+
+  .weather-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    background-image: linear-gradient(#2d4b5d, #5ab6b4);
+    color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 3px 7px #97b2b1;
+   
+  }
+  .weather-description {
+    font-weight: 500;
+    text-align:left;
+  }
+  .temperature {
+    font-weight: bold;
+    font-size: 3rem;
+   
+    
+  }
+  .location-icon {
+    font-size: 20px; 
+    margin-right: 5px;
+  }
+
+  .wind-icon {
+    margin-right: 1rem;
+  }
+  
+  .weather-description {
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .button-toggle {
+    margin-top: 10px;
+    padding: 5px;
+    width: 5%;
+    height: 3rem;;
+    font-weight: 600;
+    border-radius: 50%;
+    background-color:#2d4b5d;
+    color: white;
+   align-self: flex-end;
+ 
+  }
+ 
+.icon {
+    width: 100px;
+}
+.maini {
+    color: white;
+    padding: 5px;
+    text-align: start;
+}
+  button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-image: linear-gradient(#2d4b5d, #56aeae);
+    color: white;
+    border-radius: 5px;
+    width: 10%;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align:left;
+  }
+
+
+
+ .cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  color: white;
+ 
+
+ }
+
+ .onecard {
+display: flex;
+flex-direction: column;
+  border: 1px solid black;
+  font-weight: 500;
+  border-radius: 15px;
+  box-shadow: 3px 7px #97b2b1;
+  background-image: linear-gradient(#2d4b5d, #56aeae);
+  color: white;
+  flex-basis: 220px;
+
+ }
+.card-day {
+  margin-top: 1rem;
+}
+ .card-temp {
+  font-size: 1.8rem;
+  margin:2rem;
+ }
+ .card-desc {
+  margin-bottom: 1rem;
+ }
+
+ .icon-card {
+  margin-top: 1rem;
+ }
+ .photo {
+  width: 8%;
+  color: white;
+ }
+
+
+ @media all and (max-width: 1200px) {
+  .onecard {
+    flex-basis: 45%;
+    margin-top: 1rem;
+    margin: 0.5rem;
+  }
+  .button-toggle {
+  width: 8%;
+  }
+  .cards {
+    justify-content: center;
+  
+  }
+  .city-input {
+    width: 35%;
+  }
+  button {
+    width: 14%;
+  }
+}
+
+@media all and (max-width: 650px) {
+.weather-data {
+  display: flex;
+  flex-direction: column;
+}
+.onecard {
+  flex-basis: 80%;
+  
+}
+.button-toggle {
+width: 12%;
+}
+
+.uv {
+  margin-bottom: 1rem;
+}
+.city-input {
+  width: 46%;
+}
+button {
+  width: 22%;
+}
+}
+
+@media all and (max-width: 465px) {
+  .onecard {
+    flex-basis: 100%;
+  }
+  .city-input {
+    width: 60%;
+  }
+
+  button {
+    width: 28%;
+  }
+  .button-toggle {
+    width: 15%;
+  
+  }
+}
+
+
+
+.footer {
+  text-align: center;
+  color: #2d4b5d;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
