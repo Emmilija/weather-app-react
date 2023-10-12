@@ -1,18 +1,13 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import './Weather.css'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { faWind } from '@fortawesome/free-solid-svg-icons';
-import {faDroplet} from '@fortawesome/free-solid-svg-icons';
-import {faSun} from '@fortawesome/free-solid-svg-icons';
-import{faCloud} from '@fortawesome/free-solid-svg-icons'
+import '../style/Weather.css'; 
 import Cards from './Cards';
-import Spinner from './Spinner';
+import MainCard from './MainCard';
 import { getWeatherData } from '../context/WeatherApi';
 
 
 const Weather = ({city, setCity}) => {
+    const [cityInput, setCityInput] = useState('')
     const [weatherData, setWeatherData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null)
@@ -63,22 +58,26 @@ const handleToggleUnit = () => {
 
  
   const handleSearch = () => {
-    document.querySelector('.button-toggle').style.display = 'block'
-
-    setWeatherData(null); 
-    setIsLoading(true);
-    setError(null);
-
-    getWeather();
-  };
-  
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); 
-      handleSearch();
+    if (cityInput.trim() === "") {
+      setError("You must enter a city");
+      setShowToggle(false);
+    } else {
+      setCity(cityInput); 
+      setIsLoading(true);
+      setError(null);
+      setShowToggle(true);
+      setCityInput(""); 
     }
-  };
-  
+
+  }
+
+  const handleKeyDown = (e) => {
+    if(e.key === 'Enter') {
+      handleSearch()
+    }
+  } 
+
+
       return (
         <div className="search-city">
           
@@ -96,89 +95,29 @@ const handleToggleUnit = () => {
               className="city-input"
               placeholder="Search for city"
               type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={cityInput}
+              onChange={(e) => setCityInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button type='submit'  onClick={handleSearch}>Search</button>
           </div>
 
-          {isLoading ? (
-            <Spinner />
-          ) : error ? (
-            <p>{error}</p>
-          ) : weatherData ? (
-            <div className="weather-data">
-              {weatherData.location && (
-                <div>
-                  <h2>
-                    <FontAwesomeIcon
-                      icon={faLocationDot}
-                      className="location-icon"
-                    />
-                    {weatherData.location.name}
-                  </h2>
-
-                  <p className="temperature">
-                    {convertTemperature(
-                      weatherData.current.temp_c,
-                      isCelsius ? "°C" : "F"
-                    )}
-                    {isCelsius ? "°C" : "°F"}
-                  </p>
-
-                  {weatherData.current.condition && (
-                    <p className="weather-description">
-                      {weatherData.current.condition.text}
-                    </p>
-                  )}
-                </div>
-              )}
-              {weatherData.current && (
-                <div className="icon-weather">
-                  <img
-                    src={weatherData.current.condition.icon || ""}
-                    alt={weatherData.current.condition.text || ""}
-                  />
-                </div>
-              )}
-              {weatherData.current && (
-                <div>
-                  <p className="maini wind">
-                    <FontAwesomeIcon icon={faWind} className="wind-icon" />
-                    Wind status: {weatherData.current.wind_kph || ""} mph{" "}
-                  </p>
-
-                  <p className="maini humidity">
-                    <FontAwesomeIcon icon={faDroplet} className="wind-icon" />
-                    Humidity: {weatherData.current.humidity || ""} %{" "}
-                  </p>
-
-                  <p className=" maini cloud">
-                    {" "}
-                    <FontAwesomeIcon icon={faCloud} className="wind-icon" />
-                    Cloud: {weatherData.current.cloud || ""}{" "}
-                  </p>
-
-                  <p className=" maini uv">
-                    {" "}
-                    <FontAwesomeIcon icon={faSun} className="wind-icon" />
-                    Uv: {weatherData.current.uv || ""}{" "}
-                  </p>
-                </div>
-              )}
-            </div>
-          ) : (
-            <p>Searching for weather data...</p>
-          )}
-
+          <MainCard 
+          weatherData={weatherData}
+          isCelsius={isCelsius}
+          convertTemperature={convertTemperature}
+          isLoading={isLoading}
+          error={error}
+           />
           <div>
             {weatherData &&
               weatherData.forecast &&
               weatherData.forecast.forecastday && (
+
                 <Cards
                   forecastData={weatherData.forecast.forecastday}
                   isCelsius={isCelsius}
+                  convertTemperature={convertTemperature}
                 />
               )}
           </div>

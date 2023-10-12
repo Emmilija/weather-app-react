@@ -10,12 +10,10 @@ function App() {
       <div className="Weather App">
       
           <Layout />
-      
-      
+
           <Cards />
        
-
-        <Footer />
+          <Footer />
       </div>
     );
   }

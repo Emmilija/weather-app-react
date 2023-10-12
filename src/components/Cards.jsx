@@ -1,27 +1,16 @@
 import React from 'react';
-import './Weather.css'; 
+import '../style/Weather.css'; 
 
 
 
 
-const Cards = ({ forecastData, isCelsius }) => {
+const Cards = ({ forecastData, isCelsius, convertTemperature }) => {
 
     if (!forecastData || forecastData.length === 0) {
         return ;
       }
 
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-
-      const convertTemperature = (temperature, targetUnit) => {
-              if (targetUnit === 'C') {
-                return Math.round(temperature);
-              } else if (targetUnit === 'F') {
-                return parseFloat((temperature * 9 / 5 + 32).toFixed(2));
-              } else {
-                return temperature;
-              }
-            }
 
 
 
